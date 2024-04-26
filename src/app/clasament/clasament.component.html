@@ -1,0 +1,17 @@
+<div class="container-sm col-3">
+    <h2 class="m-5 text-center">Clasament 🏆</h2>
+    <ul class="list-group list-group-flush m-5">
+      <li *ngFor="let item of Clasament" class="list-group-item">
+        <div class="row">
+            <div class="col-6 text-start">{{ item.Loc }}</div>
+            <div class="col-6 text-end">
+                <span *ngIf="item.Loc === 1" class="badge text-bg-secondary rounded-circle " style="background-color: gold !important">1</span>
+                <span *ngIf="item.Loc === 2" class="badge text-bg-secondary rounded-circle" style="background-color: silver !important;">2</span>
+                <span *ngIf="item.Loc === 3" class="badge text-bg-secondary rounded-circle" style="background-color: #CD7F32 !important">3</span>
+                {{ item.Nume }}
+                
+            </div>
+        </div>        
+      </li>
+    </ul>
+  </div>

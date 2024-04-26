@@ -1,0 +1,25 @@
+
+<div class="container h-100 d-flex align-items-center">
+    <div class="col-8 d-flex justify-content-center">
+      <div class="p-1 bg-dark rounded-1 border border-light border-2">
+        <table class="border border-5 border-dark bg-dark ">
+          <tr *ngFor="let i of counter(game.board.rows)" class="">
+            <td *ngFor="let j of counter(game.board.columns)" class="">
+              <div *ngFor="let candy of game.board.candies">
+                <div *ngIf="candy.row === i && candy.column === j">
+                  <img width="50px" height="50px" src="../../assets/Candies/{{ candy.type }}.png" alt="" >
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>  
+    </div>
+    <div class="col-4 text-center d-flex justify-content-center">
+      <div class="bg-dark col-10 p-5 rounded-circle border border-light border-2">
+        <div class="h1 text-light">{{ game.player }}</div>
+        <div class="h4 text-secondary" style="color: gold !important;">Score: {{ game.score }}</div>
+        <div class="text-danger">Left moves: {{ game.moves }}</div>
+      </div>
+    </div>
+</div>
