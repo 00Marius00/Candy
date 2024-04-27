@@ -1,17 +1,41 @@
-<div class="container-sm col-3">
-    <h2 class="m-5 text-center">Clasament 🏆</h2>
-    <ul class="list-group list-group-flush m-5">
-      <li *ngFor="let item of Clasament" class="list-group-item">
-        <div class="row">
-            <div class="col-6 text-start">{{ item.Loc }}</div>
-            <div class="col-6 text-end">
-                <span *ngIf="item.Loc === 1" class="badge text-bg-secondary rounded-circle " style="background-color: gold !important">1</span>
-                <span *ngIf="item.Loc === 2" class="badge text-bg-secondary rounded-circle" style="background-color: silver !important;">2</span>
-                <span *ngIf="item.Loc === 3" class="badge text-bg-secondary rounded-circle" style="background-color: #CD7F32 !important">3</span>
-                {{ item.Nume }}
-                
-            </div>
-        </div>        
-      </li>
-    </ul>
+<div class="container col-4">
+  <h2 class="text-center bg-light ms-5 me-5 mb-0 border border-3 border-bottom-0 border-dark p-2 rounded-top-3">
+    Clasament 🏆
+  </h2>
+  <ul class="list-group list-group-flush ms-5 me-5 border border-3 border-dark overflow-auto" style="max-height: 60vh;">
+    <li *ngFor="let item of Clasament" class="list-group-item">
+      <div class="row">
+          <div *ngIf="item.Loc === 1" class="col-3 text-start">
+            <span class="badge text-bg-secondary rounded-circle border-bottom border-3 border-dark" style="background-color: gold !important">{{ item.Loc }}</span>
+          </div>
+          <div *ngIf="item.Loc === 2" class="col-3 text-start">
+            <span class="badge text-bg-secondary rounded-circle border-bottom border-3 border-dark" style="background-color: silver !important">{{ item.Loc }}</span>
+          </div>
+          <div *ngIf="item.Loc === 3" class="col-3 text-start">
+            <span class="badge text-bg-secondary rounded-circle border-bottom border-3 border-dark" style="background-color: #CD7F32 !important">{{ item.Loc }}</span>
+          </div>
+          <div *ngIf="item.Loc > 3" class="col-3 text-start">
+            <span class="badge text-bg-secondary-subtle rounded-circle border-bottom border-3 border-dark" style="background-color: #8a8a8a !important">{{ item.Loc }}</span>
+          </div>
+          <div class="col-5 text-start text fw-semibold">
+            {{ item.Nume }}
+          </div>
+          <div *ngIf="item.Loc === 1" class="col-4 text-bg-secondary rounded-1 text-center border-0 border-bottom   border-3 border-dark" style="background-color: gold !important">
+            Scor: {{ item.Scor }}
+          </div>
+          <div *ngIf="item.Loc === 2" class="col-4 text-bg-secondary rounded-1 text-center border-0 border-bottom   border-3 border-dark" style="background-color: silver !important">
+            Scor: {{ item.Scor }}
+          </div>
+          <div *ngIf="item.Loc === 3" class="col-4 text-bg-secondary rounded-1 text-center border-0 border-bottom   border-3 border-dark" style="background-color: #CD7F32 !important">
+            Scor: {{ item.Scor }}
+          </div>
+          <div *ngIf="item.Loc > 3" class="col-4 text-bg-secondary rounded-1 text-center border-0 border-bottom   border-3 border-dark">
+            Scor: {{ item.Scor }}
+          </div>
+      </div>        
+    </li>
+  </ul>
+  <div class="mt-0 m-5 text-end bg-light p-2 border border-3 border-top-0 border-dark rounded-bottom-3">
+    <a class="btn btn-danger text-light fw-semibold border-0 border-bottom border-3 border-dark" href="/">Inapoi</a>
   </div>
+</div>

@@ -1,0 +1,16 @@
+::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 2rem;
+}
+
+::-webkit-scrollbar-track {
+    background-color: whitesmoke; /* Culoarea fundalului */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #999999; /* Culoarea butonului */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Culoarea butonului la hover */
+}

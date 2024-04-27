@@ -1,7 +1,6 @@
-
 <div class="container h-100 d-flex align-items-center">
     <div class="col-8 d-flex justify-content-center">
-      <div class="p-1 bg-dark rounded-1 border border-light border-2">
+      <div class="p-1 bg-light rounded-3 border border-3 border-dark">
         <table class="border border-5 border-dark bg-dark ">
           <tr *ngFor="let i of counter(game.board.rows)" class="">
             <td *ngFor="let j of counter(game.board.columns)" class="">
@@ -15,11 +14,44 @@
         </table>
       </div>  
     </div>
-    <div class="col-4 text-center d-flex justify-content-center">
-      <div class="bg-dark col-10 p-5 rounded-circle border border-light border-2">
-        <div class="h1 text-light">{{ game.player }}</div>
-        <div class="h4 text-secondary" style="color: gold !important;">Score: {{ game.score }}</div>
-        <div class="text-danger">Left moves: {{ game.moves }}</div>
+    <div class="col-4 text-center fw-semibold">
+      <div class="mb-0 m-5 bg-light p-2 border border-3 border-bottom-0 border-dark rounded-top-3 row">
+          <h3 class="text-bg-secondary rounded-1 border-bottom border-3 border-dark">{{ game.player }}</h3>
+      </div>
+        <ul class="list-group list-group-flush ms-5 me-5 border border-3 border-dark" style="max-height: 60vh;">
+          <li class="list-group-item border-dark">
+            <div class="row">
+              <div class="col-6 text-start rounded-1  p-1">
+                Loc
+              </div> 
+              <div class="col-6 text-end fw-semibold p-1">
+                {{ game.place }}
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item border-dark">
+            <div class="row">
+              <div class="col-6 text-start rounded-1  p-1">
+                Scor
+              </div> 
+              <div class="col-6 text-end fw-semibold p-1">
+                {{ game.score }}
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-6 text-start rounded-1 p-1">
+                Miscari ramase
+              </div> 
+              <div class="col-6 text-end fw-semibold p-1">
+                {{ game.moves }}
+              </div>
+            </div>
+          </li>
+        </ul>
+      <div class="mt-0 m-5 text-end bg-light p-2 border border-3 border-top-0 border-dark rounded-bottom-3">
+        <a class="btn btn-warning text-light fw-semibold border-0 border-bottom border-3 border-dark" href="/clasament">Clasament</a>
       </div>
     </div>
 </div>

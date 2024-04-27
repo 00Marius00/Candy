@@ -2,3 +2,6 @@
 body{
     background-image: url('./assets/backgrounds/candycrush.jpg');
 }
+li:hover{
+    background-color: whitesmoke !important;
+}

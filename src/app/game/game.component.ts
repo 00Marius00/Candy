@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CdkDropList, CdkDrag],
   templateUrl: './game.component.html',
   styleUrl: './game.component.css'
 })
+
 export class GameComponent {
   game: IGame;
   board: IBoard[] = [];
@@ -16,7 +17,8 @@ export class GameComponent {
     const rowsNumber: number = 10;
     const columnsNumber: number = 12;
     this.game = {
-      score: 0,
+      score: 2389,
+      place:10,
       player: 'Marius',
       board: {
         rows: rowsNumber, 
@@ -63,6 +65,7 @@ export class GameComponent {
 export interface IGame {
   score: number;
   player: string;
+  place: number;
   board: IBoard;
   moves: number;
 }
