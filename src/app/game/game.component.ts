@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray} from '@angular/cdk/drag-drop';
+
 
 @Component({
   selector: 'app-game',
@@ -13,51 +14,51 @@ import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray} from '@angular/cdk/d
 export class GameComponent {
   game: IGame;
   board: IBoard[] = [];
+
   constructor(){
-    const rowsNumber: number = 10;
-    const columnsNumber: number = 12;
+    const dimensions = this.getDimensions(Boards.level2);
     this.game = {
       score: 2389,
       place:10,
       player: 'Marius',
       board: {
-        rows: rowsNumber, 
-        columns: columnsNumber, 
-        candies: this.create_candies(rowsNumber, columnsNumber),
-        table: this.create_table(rowsNumber, columnsNumber)
+        rows: dimensions.rows, 
+        columns: dimensions.columns, 
+        candies: this.create_candies(dimensions.rows, dimensions.columns),
       },
       moves: 10
     }
   }
+
   counter(n: number): number[] {
     return Array(n).fill(0).map((x, i) => i);
   }
-  create_table(rows: number, columns: number): number[][] {
-    let table: number[][] = [];
-    for (let i = 0; i < rows; i++) {
-      let row: number[] = [];
-      for (let j = 0; j < columns; j++) {
-        row.push(0);
-      }
-      table.push(row);
-    }
-    return table;
-  }
+
   create_candies(rows: number, columns: number): ICandy[] {
     let candies: ICandy[] = [];
+    const selectedLevel = Boards.level2;
+    console.log(this.getDimensions(selectedLevel));
     for (let i = 0; i < rows; i++) {
       for (let j = 0; j < columns; j++) {
-        const randomTypeIndex = Math.floor(Math.random() * Object.keys(CandyType).length);
-        const randomType = Object.values(CandyType)[randomTypeIndex];
-        candies.push({
-          type: randomType,
-          row: i,
-          column: j,
-          score: 10
-        });
+        if (selectedLevel[i][j] == 1){
+          const randomTypeIndex = Math.floor(Math.random() * Object.keys(CandyType).length);
+          const randomType = Object.values(CandyType)[randomTypeIndex];
+          candies.push({
+            type: randomType,
+            row: i,
+            column: j,
+            score: 10
+          });
+        }
       }
     }
     return candies;
+  }
+
+  getDimensions(matrix: number[][]): { rows: number, columns: number } {
+    const rows = matrix.length;
+    const columns = matrix[0].length;
+    return { rows, columns };
   }
 }
 
@@ -74,7 +75,7 @@ export interface IBoard {
   rows: number;
   columns: number;
   candies: ICandy[];
-  table: number[][];
+  // level: typeof Boards; 
 }
 
 export enum CandyType {
@@ -82,13 +83,14 @@ export enum CandyType {
   blue = "blue",
   yellow = "yellow",
   green = "green", 
-  purple = "purple",
+  purple = "purple", 
 }
 
-export const BoardTypes = {
-  level1: [[0,1,1,1,0], [0,2,2,2,0], [0,3,3,3,0], [0,0,0,0,0]],
-  level2: [[0,1,1,1,0], [0,2,2,2,0], [0,3,3,3,0], [0,0,0,0,0]],
-};
+export const Boards = {
+  level1: [[1,1,1,1,1,1,1],[1,1,1,1,1,1,1], [0,1,1,1,1,1,0], [0,1,1,1,1,1,0], [0,1,1,1,1,1,0], [0,1,1,1,1,1,0], [1,1,1,1,1,1,1], [1,1,1,1,1,1,1]],
+  level2: [[0,0,0,0,1,0,0,0,0], [0,0,0,1,1,1,0,0,0], [0,0,1,1,1,1,1,0,0], [0,1,1,1,1,1,1,1,0], [1,1,1,1,1,1,1,1,1], [0,1,1,1,1,1,1,1,0], [0,0,1,1,1,1,1,0,0], [0,0,0,1,1,1,0,0,0], [0,0,0,0,1,0,0,0,0]]
+
+} 
 
 export interface ICandy {
   type: CandyType;
