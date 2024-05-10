@@ -1,6 +1,9 @@
 <div class="container h-100 d-flex align-items-center">
     <div class="col-8 d-flex justify-content-center">
       <div class="p-1 bg-light rounded-3 border border-3 border-dark">
+            <div class="col-12 text-center rounded-1">
+              <h3 class="text-bg-warning rounded-1 border-bottom border-3 border-dark">Nivelul {{ game.level }}</h3>
+            </div> 
         <table class="border border-5 border-dark bg-dark ">
           <tr *ngFor="let i of counter(game.board.rows)" class="">
             <td *ngFor="let j of counter(game.board.columns)" class="">

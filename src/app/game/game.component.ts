@@ -14,9 +14,10 @@ import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray} from '@angular/cdk/d
 export class GameComponent {
   game: IGame;
   board: IBoard[] = [];
-
+  levelArray: number [][];
   constructor(){
-    const dimensions = this.getDimensions(Boards.level2);
+    this.levelArray = Boards.level2;
+    const dimensions = this.getDimensions(this.levelArray);
     this.game = {
       score: 2389,
       place:10,
@@ -24,8 +25,9 @@ export class GameComponent {
       board: {
         rows: dimensions.rows, 
         columns: dimensions.columns, 
-        candies: this.create_candies(dimensions.rows, dimensions.columns),
+        candies: this.create_candies(dimensions.rows, dimensions.columns, this.levelArray),
       },
+      level: 2,
       moves: 10
     }
   }
@@ -34,9 +36,9 @@ export class GameComponent {
     return Array(n).fill(0).map((x, i) => i);
   }
 
-  create_candies(rows: number, columns: number): ICandy[] {
+  create_candies(rows: number, columns: number, selectedLevel: number[][]): ICandy[] {
     let candies: ICandy[] = [];
-    const selectedLevel = Boards.level2;
+    // const selectedLevel = Boards.level1;
     console.log(this.getDimensions(selectedLevel));
     for (let i = 0; i < rows; i++) {
       for (let j = 0; j < columns; j++) {
@@ -69,13 +71,13 @@ export interface IGame {
   place: number;
   board: IBoard;
   moves: number;
+  level: number;
 }
 
 export interface IBoard {
   rows: number;
   columns: number;
   candies: ICandy[];
-  // level: typeof Boards; 
 }
 
 export enum CandyType {
@@ -87,7 +89,7 @@ export enum CandyType {
 }
 
 export const Boards = {
-  level1: [[1,1,1,1,1,1,1],[1,1,1,1,1,1,1], [0,1,1,1,1,1,0], [0,1,1,1,1,1,0], [0,1,1,1,1,1,0], [0,1,1,1,1,1,0], [1,1,1,1,1,1,1], [1,1,1,1,1,1,1]],
+  level1: [[1,1,1,1,1,1,1],[1,1,1,1,1,1,1], [1,1,1,1,1,1,1], [1,1,1,1,1,1,1], [1,1,1,1,1,1,1], [1,1,1,1,1,1,1], [1,1,1,1,1,1,1], [1,1,1,1,1,1,1]],
   level2: [[0,0,0,0,1,0,0,0,0], [0,0,0,1,1,1,0,0,0], [0,0,1,1,1,1,1,0,0], [0,1,1,1,1,1,1,1,0], [1,1,1,1,1,1,1,1,1], [0,1,1,1,1,1,1,1,0], [0,0,1,1,1,1,1,0,0], [0,0,0,1,1,1,0,0,0], [0,0,0,0,1,0,0,0,0]]
 
 } 
