@@ -1,60 +1,91 @@
 <div class="container h-100 d-flex align-items-center">
-    <div class="col-8 d-flex justify-content-center">
-      <div class="p-1 bg-light rounded-3 border border-3 border-dark">
-            <div class="col-12 text-center rounded-1">
-              <h3 class="text-bg-warning rounded-1 border-bottom border-3 border-dark">Nivelul {{ game.level }}</h3>
-            </div> 
-        <table class="border border-5 border-dark bg-dark ">
-          <tr *ngFor="let i of counter(game.board.rows)" class="">
-            <td *ngFor="let j of counter(game.board.columns)" class="">
-              <div *ngFor="let candy of game.board.candies">
-                <div *ngIf="candy.row === i && candy.column === j">
-                  <img width="50px" height="50px" src="../../assets/Candies/{{ candy.type }}.png" alt="" >
-                </div>
+  <div class="col-8  d-flex justify-content-center">
+    <div class="p-1 bg-light rounded-3 ">
+      <div class="col-12 text-center rounded-1">
+        <h3 class="text-bg-warning rounded-1 border-bottom border-3 border-dark">Nivelul {{ game.level }}</h3>
+      </div> 
+      <table #tableContainer class="border border-5 border-dark bg-dark gameBoard" id="tableId">
+        <tbody cdkDropListGroup>
+          <tr *ngFor="let i of counter(game.board.rows); let rowIndex = index" 
+            cdkDropList cdkDropListOrientation="horizontal" 
+            (cdkDropListDropped)="drop($event)"
+            >
+            <td *ngFor="let j of counter(game.board.columns)" id="cell{{ i }}{{ j }}">
+              <div *ngFor="let candy of getCandiesAtPosition(i, j)">
+                  <img 
+                    width="50px" 
+                    height="50px" 
+                    [src]="'../../assets/Candies/' + candy.type + '.png'" 
+                    alt="" cdkDrag
+                    cdkDragBoundary=".gameBoard"
+                    [attr.row]="i"
+                    [attr.column]="j"
+                    >
               </div>
             </td>
           </tr>
-        </table>
-      </div>  
+        </tbody>
+      </table>
+    </div>  
+  </div>
+  <div class="col-4 text-center fw-semibold">
+    <div class="mb-0 m-5 bg-light p-2 rounded-top-3 row">
+        <h3 class="text-bg-secondary rounded-1 border-bottom border-3 border-dark">{{ game.player }}</h3>
     </div>
-    <div class="col-4 text-center fw-semibold">
-      <div class="mb-0 m-5 bg-light p-2 border border-3 border-bottom-0 border-dark rounded-top-3 row">
-          <h3 class="text-bg-secondary rounded-1 border-bottom border-3 border-dark">{{ game.player }}</h3>
-      </div>
-        <ul class="list-group list-group-flush ms-5 me-5 border border-3 border-dark" style="max-height: 60vh;">
-          <li class="list-group-item border-dark">
-            <div class="row">
-              <div class="col-6 text-start rounded-1  p-1">
-                Loc
-              </div> 
-              <div class="col-6 text-end fw-semibold p-1">
-                {{ game.place }}
-              </div>
+      <ul class="list-group list-group-flush ms-5 me-5 p-3" style="max-height: 60vh; background-color: whitesmoke;">
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-6 text-start rounded-1  p-1">
+              Loc
+            </div> 
+            <div class="col-6 text-end fw-semibold p-1">
+              {{ game.place }}
             </div>
-          </li>
-          <li class="list-group-item border-dark">
-            <div class="row">
-              <div class="col-6 text-start rounded-1  p-1">
-                Scor
-              </div> 
-              <div class="col-6 text-end fw-semibold p-1">
-                {{ game.score }}
-              </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-6 text-start rounded-1  p-1">
+              Scor
+            </div> 
+            <div class="col-6 text-end fw-semibold p-1">
+              {{ game.score }}
             </div>
-          </li>
-          <li class="list-group-item">
-            <div class="row">
-              <div class="col-6 text-start rounded-1 p-1">
-                Miscari ramase
-              </div> 
-              <div class="col-6 text-end fw-semibold p-1">
-                {{ game.moves }}
-              </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-6 text-start rounded-1 p-1">
+              Miscari ramase
+            </div> 
+            <div class="col-6 text-end fw-semibold p-1">
+              {{ game.moves }}
             </div>
-          </li>
-        </ul>
-      <div class="mt-0 m-5 text-end bg-light p-2 border border-3 border-top-0 border-dark rounded-bottom-3">
-        <a class="btn btn-warning text-light fw-semibold border-0 border-bottom border-3 border-dark" href="/clasament">Clasament</a>
-      </div>
+          </div>
+        </li>
+      </ul>
+    <div class="mt-0 m-5 text-end bg-light p-2 rounded-bottom-3">
+      <a class="btn btn-warning text-light fw-semibold border-0 border-bottom border-3 border-dark" href="/clasament">Clasament</a>
     </div>
+  </div>
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  // var cellElement = document.getElementById("00");
+
+  // // Obține dimensiunile tabelului
+  // var tableElement = document.getElementById("tableId");
+  // var tableRect = tableElement.getBoundingClientRect();
+
+  // // Obține dimensiunile și poziția elementului
+  // var cellRect = cellElement.getBoundingClientRect();
+
+  // // Calculează poziția relativă a elementului în tabel
+  // var relativePosition = {
+  //   top: cellRect.top - tableRect.top,
+  //   left: cellRect.left - tableRect.left
+  // };
+  console.log("Poziția relativă a elementului în tabel:");
+});
+
+</script>

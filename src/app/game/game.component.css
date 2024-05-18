@@ -5,3 +5,14 @@
   li:hover{
     background-color: whitesmoke !important;
 }
+.candy{
+  display: flex;
+  flex-direction: row;
+}
+.selected-candy{
+  height: 60px;
+  width: 60px;
+  margin:-5px;
+  position:relative;
+  /* transition: 0.4s; */
+}

@@ -1,0 +1,21 @@
+<!-- <div cdkDropList cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">
+    <div *ngFor="let i of [0, 1, 2, 3]">
+      <div *ngFor="let j of [0, 1, 2, 3]">
+        <div *ngFor="let candy of candies">
+          <div *ngIf="candy.row === i && candy.column === j" class="example-box" cdkDrag cdkDragBoundary=".example-list">
+            {{ candy | json }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <div cdkDropList cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">
+        @for(candy of candies; track candy){
+          <div class="m-2 ">
+            <div class="example-box h1 bg-light rounded-1 p-3"  cdkDrag cdkDragBoundary=".example-list">
+                {{ candy }}
+            </div>
+          </div>
+        }
+        
+  </div>
