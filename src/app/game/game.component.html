@@ -1,4 +1,4 @@
-<div class="container h-100 d-flex align-items-center">
+<div class="container h-100 d-flex align-items-center" *ngIf="game && game.board">
   <div class="col-8  d-flex justify-content-center">
     <div class="p-1 bg-light rounded-3 ">
       <div class="col-12 text-center rounded-1">
@@ -6,12 +6,9 @@
       </div> 
       <table #tableContainer class="border border-5 border-dark bg-dark gameBoard" id="tableId">
         <tbody cdkDropListGroup>
-          <tr *ngFor="let i of counter(game.board.rows); let rowIndex = index" 
-            cdkDropList cdkDropListOrientation="horizontal" 
-            (cdkDropListDropped)="drop($event)"
-            >
-            <td *ngFor="let j of counter(game.board.columns)" id="cell{{ i }}{{ j }}">
-              <div *ngFor="let candy of getCandiesAtPosition(i, j)">
+          <tr *ngFor="let i of counter(game.board.rows);" cdkDropList (cdkDropListDropped)="drop($event)">
+            <td *ngFor="let j of counter(game.board.columns);">
+              <!-- <div *ngFor="let candy of getCandiesAtPosition(i, j)">
                   <img 
                     width="50px" 
                     height="50px" 
@@ -21,7 +18,7 @@
                     [attr.row]="i"
                     [attr.column]="j"
                     >
-              </div>
+              </div> -->
             </td>
           </tr>
         </tbody>
