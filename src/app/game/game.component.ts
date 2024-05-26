@@ -1,12 +1,17 @@
-import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {CdkDragDrop, CdkDropList, CdkDrag} from '@angular/cdk/drag-drop';
+import {
+  CdkDragDrop,
+  CdkDrag,
+  CdkDropList,
+  CdkDropListGroup,
+} from '@angular/cdk/drag-drop';
 
 
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [CommonModule, CdkDropList, CdkDrag],
+  imports: [CommonModule, CdkDropListGroup, CdkDropList, CdkDrag],
   templateUrl: './game.component.html',
   styleUrl: './game.component.css'
 })
